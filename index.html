@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oser Entreprendre · Conférence · 10 juillet 2026</title>
+  <meta name="description" content="Rejoignez-nous pour la conférence Oser Entreprendre — vendredi 10 juillet 2026 à Montréal. Entrée gratuite, places limitées." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0D1117;
+      --bg2: #161B23;
+      --card: #1E2430;
+      --gold: #C9A84C;
+      --gold-light: #E2C47A;
+      --white: #F0EDE6;
+      --muted: #8A8F9A;
+      --border: #2A2D35;
+      --success: #3DBE7A;
+      --error: #E05C5C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--gold);
+      color: #0D1117;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .hero-meta-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-meta-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .hero-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #0D1117;
+      padding: 0.9rem 2.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .hero-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* PLACES COUNTER */
+    .places-bar {
+      margin-top: 3rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    .places-bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .places-bar-header span:last-child { color: var(--gold); font-weight: 600; }
+    .bar-track {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* SECTION */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 700px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    /* INFOS */
+    .infos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .info-cell {
+      background: var(--card);
+      padding: 1.5rem;
+    }
+    .info-cell-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .info-cell-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+    }
+    .info-cell-value a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .info-cell-value a:hover { text-decoration: underline; }
+
+    /* FORM */
+    #reservation { background: var(--bg2); }
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-top: 2rem;
+    }
+    .form-row { margin-bottom: 1.25rem; }
+    .form-row label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .form-row label span { color: var(--gold); }
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      transition: border-color 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-row select option { background: #1E2430; }
+    .form-row textarea { resize: vertical; min-height: 90px; }
+    /* honeypot */
+    .hp { display: none !important; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--gold);
+      color: #0D1117;
+      border: none;
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--gold-light); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* FEEDBACK */
+    .feedback {
+      display: none;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .feedback.success {
+      display: block;
+      background: rgba(61,190,122,0.1);
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+    .feedback.error {
+      display: block;
+      background: rgba(224,92,92,0.1);
+      border: 1px solid var(--error);
+      color: var(--error);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    footer strong { color: var(--gold); }
+
+    /* DIVIDER */
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem; }
+      .infos-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 1.5rem; }
+      .hero-meta { gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Les Éditions Identité Plurielle</a>
+    <a href="#reservation" class="nav-cta">Réserver ma place</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <p class="eyebrow">Conférence · Vendredi 10 juillet 2026</p>
+    <h1>Oser<br><em>Entreprendre</em></h1>
+    <p class="hero-sub">Une soirée pour ceux qui veulent transformer leurs idées en impact réel. Gratuit. Places limitées.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Date</span>
+        <span class="hero-meta-value">10 juillet 2026</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Heure</span>
+        <span class="hero-meta-value">16h00</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Tarif</span>
+        <span class="hero-meta-value">Gratuit</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Places</span>
+        <span class="hero-meta-value" id="hero-places">100</span>
+      </div>
+    </div>
+
+    <a href="#reservation" class="hero-btn">Réserver ma place →</a>
+
+    <div class="places-bar">
+      <div class="places-bar-header">
+        <span>Places réservées</span>
+        <span id="bar-label">0 / 100</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" id="bar-fill"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS -->
+  <section id="infos">
+    <div class="container">
+      <p class="section-label">Informations pratiques</p>
+      <h2 class="section-title">L'événement en bref</h2>
+      <div class="divider"></div>
+      <p style="color: var(--muted); font-weight: 300;">Une conférence conçue pour les entrepreneurs, les porteurs de projets et toute personne prête à franchir le pas. Venez comme vous êtes.</p>
+
+      <div class="infos-grid">
+        <div class="info-cell">
+          <p class="info-cell-label">Date</p>
+          <p class="info-cell-value">Vendredi<br>10 juillet 2026</p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">Heure</p>
+          <p class="info-cell-value">16h00</p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">Lieu</p>
+          <p class="info-cell-value">
+            <a href="https://maps.google.com/?q=12202+avenue+Lorenzo-Prince,+Montreal+QC" target="_blank" rel="noopener">
+              12202 avenue Lorenzo-Prince<br>Montréal, QC
+            </a>
+          </p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">Tarif</p>
+          <p class="info-cell-value">Gratuit<br><span style="font-size:0.8rem; color:var(--muted); font-weight:400;">Inscription obligatoire</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVATION -->
+  <section id="reservation">
+    <div class="container">
+      <p class="section-label">Inscription</p>
+      <h2 class="section-title">Réservez votre place</h2>
+      <div class="divider"></div>
+      <p style="color: var(--muted); font-weight: 300;">Places limitées à 100 participants. Remplissez le formulaire ci-dessous pour confirmer votre présence.</p>
+
+      <div class="form-card">
+        <form id="reservationForm" novalidate>
+
+          <!-- Honeypot anti-spam -->
+          <div class="hp">
+            <label>Ne pas remplir</label>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-row">
+              <label>Prénom <span>*</span></label>
+              <input type="text" name="prenom" id="prenom" required placeholder="Jean" autocomplete="given-name" />
+            </div>
+            <div class="form-row">
+              <label>Nom <span>*</span></label>
+              <input type="text" name="nom" id="nom" required placeholder="Dupont" autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Adresse courriel <span>*</span></label>
+            <input type="email" name="email" id="email" required placeholder="jean@exemple.com" autocomplete="email" />
+          </div>
+
+          <div class="form-row">
+            <label>Téléphone <span style="color:var(--muted);font-size:0.75rem;">(optionnel — pour confirmation SMS)</span></label>
+            <input type="tel" name="telephone" id="telephone" placeholder="+1 (514) 000-0000" autocomplete="tel" />
+          </div>
+
+          <div class="form-row">
+            <label>Nombre de places <span>*</span></label>
+            <select name="places" id="places" required>
+              <option value="">Choisissez…</option>
+              <option value="1">1 place</option>
+              <option value="2">2 places</option>
+              <option value="3">3 places</option>
+              <option value="4">4 places</option>
+              <option value="5">5 places</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label>Message <span style="color:var(--muted);font-size:0.75rem;">(optionnel)</span></label>
+            <textarea name="message" id="message" placeholder="Une question, une attente particulière…"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Confirmer ma réservation
+          </button>
+
+          <div class="feedback" id="feedback"></div>
+          <p class="form-note">* Champ obligatoire. Vos données ne sont utilisées que pour la gestion de cet événement.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Oser Entreprendre</strong> · Conférence · 10 juillet 2026 · Montréal</p>
+    <p style="margin-top:0.4rem;">Les Éditions Identité Plurielle Inc. · <a href="mailto:tchindad61@gmail.com" style="color:var(--gold);text-decoration:none;">tchindad61@gmail.com</a></p>
+  </footer>
+
+  <script>
+    // ── CONFIG ──────────────────────────────────────────────────────────────
+    // Remplace cette URL par l'URL de ton Google Apps Script déployé
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtpDiFyXI9Cy3FqeVAo3aToLA7UK73vh2mKJINvhwTf79bccu_HkHd1N6-KH9BpId9fg/exec';
+    const TOTAL_PLACES = 100;
+
+    // ── BARRE DE PROGRESSION ─────────────────────────────────────────────
+    async function fetchReservations() {
+      try {
+        const res = await fetch(SCRIPT_URL + '?action=count');
+        const data = await res.json();
+        const reserved = data.reserved || 0;
+        updateBar(reserved);
+      } catch {
+        // Si pas encore configuré, afficher 0
+        updateBar(0);
+      }
+    }
+
+    function updateBar(reserved) {
+      const pct = Math.min((reserved / TOTAL_PLACES) * 100, 100);
+      const remaining = TOTAL_PLACES - reserved;
+      document.getElementById('bar-fill').style.width = pct + '%';
+      document.getElementById('bar-label').textContent = reserved + ' / ' + TOTAL_PLACES;
+      document.getElementById('hero-places').textContent = Math.max(remaining, 0) + ' restantes';
+    }
+
+    // ── FORMULAIRE ──────────────────────────────────────────────────────
+    document.getElementById('reservationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const honeypot = this.querySelector('input[name="website"]').value;
+      if (honeypot) return; // spam
+
+      const btn = document.getElementById('submitBtn');
+      const feedback = document.getElementById('feedback');
+
+      const prenom = document.getElementById('prenom').value.trim();
+      const nom = document.getElementById('nom').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const places = document.getElementById('places').value;
+
+      if (!prenom || !nom || !email || !places) {
+        showFeedback('error', 'Veuillez remplir tous les champs obligatoires.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showFeedback('error', 'Adresse courriel invalide.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+
+      const payload = {
+        action: 'reserve',
+        prenom,
+        nom,
+        email,
+        telephone: document.getElementById('telephone').value.trim(),
+        places,
+        message: document.getElementById('message').value.trim(),
+        timestamp: new Date().toISOString()
+      };
+
+      // Si le script n'est pas encore configuré, simuler un succès
+      if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxtpDiFyXI9Cy3FqeVAo3aToLA7UK73vh2mKJINvhwTf79bccu_HkHd1N6-KH9BpId9fg/exec') {
+        setTimeout(() => {
+          showFeedback('success', `✓ Merci ${prenom} ! Votre réservation pour ${places} place(s) a bien été enregistrée. Vous recevrez une confirmation par courriel.`);
+          btn.textContent = 'Place réservée ✓';
+          document.getElementById('reservationForm').reset();
+        }, 1200);
+        return;
+      }
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showFeedback('success', `✓ Merci ${prenom} ! Votre réservation pour ${places} place(s) a bien été enregistrée. Vous recevrez une confirmation par courriel.`);
+          btn.textContent = 'Place réservée ✓';
+          document.getElementById('reservationForm').reset();
+          fetchReservations();
+        } else {
+          throw new Error(data.error || 'Erreur inconnue');
+        }
+      } catch (err) {
+        showFeedback('error', 'Une erreur s\'est produite. Veuillez réessayer ou nous contacter directement.');
+        btn.disabled = false;
+        btn.textContent = 'Confirmer ma réservation';
+      }
+    });
+
+    function showFeedback(type, msg) {
+      const el = document.getElementById('feedback');
+      el.className = 'feedback ' + type;
+      el.textContent = msg;
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // ── INIT ────────────────────────────────────────────────────────────
+    window.addEventListener('load', () => {
+      setTimeout(() => fetchReservations(), 300);
+    });
+  </script>
+</body>
+</html>
