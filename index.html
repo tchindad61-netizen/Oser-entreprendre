@@ -572,16 +572,6 @@
         timestamp: new Date().toISOString()
       };
 
-      // Si le script n'est pas encore configuré, simuler un succès
-      if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxtpDiFyXI9Cy3FqeVAo3aToLA7UK73vh2mKJINvhwTf79bccu_HkHd1N6-KH9BpId9fg/exec') {
-        setTimeout(() => {
-          showFeedback('success', `✓ Merci ${prenom} ! Votre réservation pour ${places} place(s) a bien été enregistrée. Vous recevrez une confirmation par courriel.`);
-          btn.textContent = 'Place réservée ✓';
-          document.getElementById('reservationForm').reset();
-        }, 1200);
-        return;
-      }
-
       try {
         const res = await fetch(SCRIPT_URL, {
           method: 'POST',
